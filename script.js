@@ -306,6 +306,9 @@ function hero() {
       <div class="hero-band">${candidateData.party} · ${candidateData.election}</div>
       <div class="shell hero-layout">
         <div class="hero-copy">
+          <div class="hero-logo-row">
+            <img src="images/people-power-party-logo.png?v=20260525-logo1" alt="국민의힘 로고">
+          </div>
           <div class="hero-badges">
             <span class="ballot-chip">${candidateData.ballot}</span>
             <span>${candidateData.party}</span>
@@ -360,6 +363,7 @@ function home() {
         <div class="policy-preview">
           ${candidateData.policies.slice(0, 3).map(policyPreview).join("")}
         </div>
+        <a class="section-link" href="#policies">6대 핵심 공약 전체 보기</a>
       </section>
     </div>
   `;
@@ -416,8 +420,9 @@ function record() {
       <section class="shell record-grid">
         ${records.cards
           .map(
-            (card) => `
+            (card, index) => `
               <article class="card record-card" data-reveal>
+                <span class="record-number">${String(index + 1).padStart(2, "0")}</span>
                 <div class="card-head">${card.title}</div>
                 <div class="card-body">${list(card.points)}</div>
               </article>
