@@ -86,7 +86,7 @@ const candidateData = {
     {
       title: "청년·경제·일자리",
       slogan: "다시 뛰는 진주 경제, 일자리에서 시작합니다",
-      image: "images/policy-economy.jpg",
+      image: "images/policy-economy.jpg?v=20260525-policy2",
       points: [
         "청년 일자리 확대 및 정착 지원 확대",
         "청년 주거문화 지원 및 창업 지원 확대",
@@ -97,7 +97,7 @@ const candidateData = {
     {
       title: "돌봄 복지",
       slogan: "삶을 더 따뜻하게, 미래를 더 단단하게",
-      image: "images/policy-care.jpg",
+      image: "images/policy-care.jpg?v=20260525-policy2",
       points: [
         "24시간 대응 가능한 긴급 돌봄 체계 구축",
         "기존 복지시설 활용한 거점형 돌봄 운영",
@@ -110,7 +110,7 @@ const candidateData = {
     {
       title: "교통·안전",
       slogan: "안전은 당연하고, 이동은 편리하게",
-      image: "images/policy-safety.jpg",
+      image: "images/policy-safety.jpg?v=20260525-policy2",
       points: [
         "교통체계 개선, 버스 노선 효율화",
         "보행자 안전 강화",
@@ -121,7 +121,7 @@ const candidateData = {
     {
       title: "문화·관광",
       slogan: "진주의 가치를, 더 크게 빛나게",
-      image: "images/policy-culture.jpg",
+      image: "images/policy-culture.jpg?v=20260525-policy2",
       points: [
         "유등축제 콘텐츠 활성화",
         "문화관광 인프라 확대",
@@ -132,7 +132,7 @@ const candidateData = {
     {
       title: "노인·장애인 복지",
       slogan: "약속을 넘어 일상이 되는 촘촘한 복지 안전망",
-      image: "images/policy-welfare.jpg",
+      image: "images/policy-welfare.jpg?v=20260525-policy2",
       points: [
         "이동 지원 서비스 확대",
         "생활·의료 이동 연계 지원 강화",
@@ -143,7 +143,7 @@ const candidateData = {
     {
       title: "여성·가족·교육",
       slogan: "오늘의 안심, 내일의 안정",
-      image: "images/policy-education.jpg",
+      image: "images/policy-education.jpg?v=20260525-policy2",
       points: [
         "경력 보유 여성 재취업 지원 및 직업 훈련 확대",
         "돌봄 서비스 연계 지원",
@@ -257,6 +257,14 @@ const candidateData = {
   },
 };
 
+const KAKAO_JAVASCRIPT_KEY = "";
+const shareData = {
+  url: "https://djmonnar.github.io/yanghaeyoung/",
+  title: "양해영 경상남도의원 후보",
+  description: "시민의 강력한 힘이 되겠습니다",
+  imageUrl: "https://djmonnar.github.io/yanghaeyoung/images/kakao-thumbnail.jpg",
+};
+
 const nav = [
   ["홈", "home"],
   ["후보", "profile"],
@@ -309,6 +317,12 @@ function hero() {
             ${candidateData.heroPoints.map((point) => `<span>${point}</span>`).join("")}
           </div>
           <p class="hero-area">${districts}</p>
+          <div class="share-actions">
+            <button class="kakao-share" type="button" data-share-kakao aria-label="카카오톡으로 양해영 후보 홈페이지 공유">
+              <span>Talk</span>
+              카카오톡 공유
+            </button>
+          </div>
         </div>
         <figure class="hero-media">
           ${image(candidateData.images.hero, 'loading="eager"')}
@@ -520,6 +534,10 @@ function contact() {
           <span>전화: <a href="tel:${candidateData.contact.phone.replaceAll("-", "")}">${candidateData.contact.phone}</a></span>
           <span>제작: ${candidateData.contact.agency}</span>
         </div>
+        <button class="kakao-share cta-share" type="button" data-share-kakao aria-label="카카오톡으로 양해영 후보 홈페이지 공유">
+          <span>Talk</span>
+          카카오톡 공유
+        </button>
       </section>
     </div>
   `;
@@ -534,9 +552,73 @@ function render(view = (location.hash || "#home").slice(1)) {
     link.classList.toggle("is-active", link.dataset.viewLink === view);
   });
   if (view === "neighborhoods") bindNeighborhoods();
+  bindShareButtons();
   renderFooter();
   reveal();
   window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function bindShareButtons() {
+  document.querySelectorAll("[data-share-kakao]").forEach((button) => {
+    button.addEventListener("click", shareToKakao);
+  });
+}
+
+async function shareToKakao() {
+  if (KAKAO_JAVASCRIPT_KEY && window.Kakao?.Share) {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(KAKAO_JAVASCRIPT_KEY);
+    }
+    window.Kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: shareData.title,
+        description: shareData.description,
+        imageUrl: shareData.imageUrl,
+        link: {
+          mobileWebUrl: shareData.url,
+          webUrl: shareData.url,
+        },
+      },
+      buttons: [
+        {
+          title: "홈페이지 보기",
+          link: {
+            mobileWebUrl: shareData.url,
+            webUrl: shareData.url,
+          },
+        },
+      ],
+    });
+    return;
+  }
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: shareData.title,
+        text: shareData.description,
+        url: shareData.url,
+      });
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+
+  await navigator.clipboard?.writeText(shareData.url);
+  showToast("공유 링크를 복사했습니다");
+}
+
+function showToast(message) {
+  const oldToast = document.querySelector(".share-toast");
+  if (oldToast) oldToast.remove();
+  const toast = document.createElement("div");
+  toast.className = "share-toast";
+  toast.textContent = message;
+  document.body.append(toast);
+  requestAnimationFrame(() => toast.classList.add("is-visible"));
+  setTimeout(() => toast.remove(), 2200);
 }
 
 function bindNeighborhoods() {
