@@ -77,31 +77,26 @@ img {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7rem;
   min-width: 0;
 }
 
-.party-mark {
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  background: var(--red);
-  border-radius: 2px;
-  transform: skew(-18deg);
+.party-logo {
+  width: min(148px, 38vw);
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
 }
 
-.brand b {
+.brand-kicker {
   display: block;
-  font-size: 1rem;
-  font-weight: 950;
-}
-
-.brand small {
-  display: block;
-  margin-top: 0.1rem;
+  padding-left: 0.65rem;
   color: var(--red);
-  font-size: 0.75rem;
+  border-left: 1px solid rgba(215, 25, 32, 0.22);
+  font-size: 0.78rem;
   font-weight: 950;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .menu-toggle {
