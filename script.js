@@ -262,7 +262,7 @@ const shareData = {
   url: "https://djmonnar.github.io/yanghaeyoung/",
   title: "양해영 경상남도의원 후보",
   description: "시민의 강력한 힘이 되겠습니다",
-  imageUrl: "https://djmonnar.github.io/yanghaeyoung/images/kakao-thumbnail.jpg?v=20260525-logo-thumb1",
+  imageUrl: "https://djmonnar.github.io/yanghaeyoung/images/kakao-thumbnail.jpg?v=20260525-ai-thumb1",
 };
 
 const nav = [
