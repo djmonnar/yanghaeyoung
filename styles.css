@@ -28,7 +28,7 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   color: var(--ink);
-  background: var(--paper);
+  background: #f2f4f7;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   word-break: keep-all;
 }
@@ -84,10 +84,10 @@ img {
   width: 100%;
   min-height: 64px;
   padding: 0.62rem 1rem;
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid rgba(215, 25, 32, 0.16);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(215, 25, 32, 0.12);
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+  backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -190,8 +190,10 @@ img {
   margin: 0 calc(50% - 50vw);
   overflow: hidden;
   color: var(--ink);
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(215, 25, 32, 0.16), transparent 34%),
+    linear-gradient(180deg, #fff 0%, #f5f6f8 100%);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 .hero-poster {
@@ -981,13 +983,14 @@ img {
     right: 1.1rem;
     bottom: 1.1rem;
     left: auto;
-    grid-template-columns: 1fr;
-    width: 88px;
-    border-radius: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(390px, calc(100vw - 2.2rem));
+    border-radius: 999px;
     transform: none;
   }
 
   .floating-menu a {
+    min-height: 46px;
     font-size: 0.82rem;
   }
 
@@ -998,8 +1001,9 @@ img {
 
 @media (max-width: 759px) {
   .site-header {
-    flex-wrap: wrap;
-    padding-right: 4.7rem;
+    min-height: 64px;
+    flex-wrap: nowrap;
+    padding: 0.58rem 0.82rem;
   }
 
   .brand-kicker {
@@ -1007,50 +1011,75 @@ img {
   }
 
   .menu-toggle {
-    display: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    min-height: 46px;
+    padding: 0;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid rgba(17, 24, 39, 0.12);
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+    font-size: 0;
+  }
+
+  .menu-toggle::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 999px;
+    box-shadow: 0 -6px 0 var(--ink), 0 6px 0 var(--ink);
   }
 
   .top-menu {
-    position: static;
-    display: flex;
-    flex: 0 0 100%;
-    gap: 0.36rem;
-    overflow-x: auto;
-    padding: 0.38rem 0 0;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    scrollbar-width: none;
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0.82rem;
+    left: 0.82rem;
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem;
+    overflow: visible;
+    padding: 0.58rem;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(17, 24, 39, 0.1);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    scrollbar-width: auto;
   }
 
-  .top-menu::-webkit-scrollbar {
-    display: none;
+  .top-menu.is-open {
+    display: grid;
   }
 
   .top-menu a {
-    flex: 0 0 auto;
-    min-height: 34px;
-    padding: 0.42rem 0.74rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
+    flex: initial;
+    min-height: 42px;
+    padding: 0.6rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.83rem;
   }
 
   .hero {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0 calc(50% - 50vw);
+    background: linear-gradient(180deg, #fff 0%, #eef1f5 100%);
   }
 
   .hero-poster {
     width: 100%;
-    padding: 0.5rem 0.5rem 0;
+    padding: 0;
   }
 
   .hero-poster img {
-    width: 86%;
+    width: min(100vw, 460px);
     margin: 0 auto;
-    border: 1px solid var(--line);
+    border: 0;
+    box-shadow: 0 18px 44px rgba(17, 24, 39, 0.14);
   }
 
   .hero-band {
@@ -1133,14 +1162,15 @@ img {
   }
 
   .home-brief {
-    margin-top: 0.9rem;
+    margin-top: 1rem;
+    border-radius: 18px;
   }
 }
 
 @media (max-width: 420px) {
   .site-header {
     min-height: 58px;
-    padding: 0.54rem 0.78rem 0.5rem;
+    padding: 0.52rem 0.78rem;
   }
 
   .party-logo {
@@ -1157,7 +1187,7 @@ img {
   }
 
   .hero {
-    margin: 0;
+    margin: 0 calc(50% - 50vw);
   }
 
   .hero-layout {
@@ -1216,7 +1246,7 @@ img {
 
 @media (max-width: 759px) {
   .hero .hero-poster img {
-    width: 86%;
+    width: min(100vw, 460px);
     margin: 0 auto;
   }
 }
