@@ -235,8 +235,8 @@ const candidateData = {
   },
   images: {
     hero: {
-      path: "images/hero-yang.jpg",
-      alt: "거리에서 인사하는 양해영 경상남도의원 후보",
+      path: "images/yang-profile.jpg",
+      alt: "양해영 경상남도의원 후보 프로필 사진",
     },
     profile: {
       path: "images/yang-profile.jpg",
@@ -253,6 +253,10 @@ const candidateData = {
     banner: {
       path: "images/yang-banner.jpg",
       alt: "양해영 후보 선거 홍보 배너",
+    },
+    support: {
+      path: "images/support-committee.png",
+      alt: "양해영 후원회 안내 이미지",
     },
   },
 };
@@ -272,6 +276,7 @@ const nav = [
   ["공약", "policies"],
   ["지역", "neighborhoods"],
   ["현장", "gallery"],
+  ["후원회", "support"],
   ["연락", "contact"],
 ];
 
@@ -284,7 +289,7 @@ function initMenus() {
   const toLink = ([label, view]) => `<a href="#${view}" data-view-link="${view}">${label}</a>`;
   $("#top-menu").innerHTML = nav.map(toLink).join("");
   $(".floating-menu").innerHTML = nav
-    .filter(([, view]) => ["home", "policies", "neighborhoods", "gallery"].includes(view))
+    .filter(([, view]) => ["home", "profile", "policies", "support"].includes(view))
     .map(toLink)
     .join("");
 
@@ -349,6 +354,12 @@ function home() {
           <h2>${candidateData.messageTitle}</h2>
           <p>${candidateData.message[1]}</p>
           <p>${candidateData.message[4]}</p>
+          <div class="home-career-grid">
+            ${candidateData.careers
+              .slice(0, 4)
+              .map((item) => `<span>${item}</span>`)
+              .join("")}
+          </div>
         </div>
         <div class="brief-photo">
           ${image(candidateData.images.profile, 'loading="lazy"')}
@@ -548,7 +559,22 @@ function contact() {
   `;
 }
 
-const views = { home, profile, record, policies, neighborhoods, gallery, contact };
+function support() {
+  return `
+    <div class="view sub-page">
+      <div class="shell section-head">
+        <p class="eyebrow">Support</p>
+        <h1 class="title">양해영 후원회 안내</h1>
+        <p class="desc">첨부된 후원회 안내 이미지를 그대로 게시했습니다.</p>
+      </div>
+      <section class="shell support-page" data-reveal>
+        ${image(candidateData.images.support, 'loading="lazy"')}
+      </section>
+    </div>
+  `;
+}
+
+const views = { home, profile, record, policies, neighborhoods, gallery, support, contact };
 
 function render(view = (location.hash || "#home").slice(1)) {
   if (!views[view]) view = "home";
