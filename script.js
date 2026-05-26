@@ -308,38 +308,11 @@ function initMenus() {
 function hero() {
   return `
     <section class="hero">
-      <div class="hero-band">${candidateData.party} · ${candidateData.election}</div>
-      <div class="shell hero-layout">
-        <div class="hero-copy">
-          <div class="hero-logo-row">
-            <img src="images/people-power-party-logo.png?v=20260525-logo1" alt="국민의힘 로고">
-          </div>
-          <div class="hero-badges">
-            <span class="ballot-chip">${candidateData.ballot}</span>
-            <span>${candidateData.party}</span>
-          </div>
-          <p class="hero-kicker">${candidateData.displayName}</p>
-          <h1>${candidateData.name}</h1>
-          <p class="hero-slogan">${candidateData.slogan}</p>
-          <div class="hero-proof">
-            ${candidateData.heroPoints.map((point) => `<span>${point}</span>`).join("")}
-          </div>
-          <p class="hero-area">${districts}</p>
-          <div class="share-actions">
-            <button class="kakao-share" type="button" data-share-kakao aria-label="카카오톡으로 양해영 후보 홈페이지 공유">
-              <span>Talk</span>
-              카카오톡 공유
-            </button>
-          </div>
-        </div>
-        <figure class="hero-media">
-          ${image(candidateData.images.hero, 'loading="eager"')}
-          <figcaption>
-            <b>${candidateData.ballot.replace("기호 ", "")}</b>
-            <span>${candidateData.subSlogan}</span>
-          </figcaption>
-        </figure>
-      </div>
+      <h1 class="sr-only">${candidateData.displayName} - ${candidateData.slogan}</h1>
+      <picture class="hero-poster">
+        <source media="(max-width: 759px)" srcset="images/hero-mobile.png?v=20260526-hero2">
+        <img src="images/hero-desktop.png?v=20260526-hero2" alt="국민의힘 기호 2 양해영 경상남도의원 후보 메인 홍보 이미지" loading="eager">
+      </picture>
     </section>
   `;
 }
