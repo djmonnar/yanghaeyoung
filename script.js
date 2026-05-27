@@ -307,12 +307,25 @@ function initMenus() {
 
 function hero() {
   return `
-    <section class="hero">
-      <h1 class="sr-only">${candidateData.displayName} - ${candidateData.slogan}</h1>
-      <picture class="hero-poster">
-        <source media="(max-width: 759px)" srcset="images/hero-mobile.png?v=20260526-hero2">
-        <img src="images/hero-desktop.png?v=20260526-hero2" alt="국민의힘 기호 2 양해영 경상남도의원 후보 메인 홍보 이미지" loading="eager">
+    <section class="hero hero-overlay">
+      <picture class="hero-backdrop" aria-hidden="true">
+        <source media="(max-width: 759px)" srcset="images/hero-ai-mobile.png?v=20260527-ai1">
+        <img src="images/hero-ai-final.png?v=20260527-ai1" alt="" loading="eager">
       </picture>
+      <div class="hero-panel shell">
+        <div class="hero-ballot"><span>기호</span><b>2</b></div>
+        <p class="hero-eyebrow">${candidateData.party} · ${candidateData.election}</p>
+        <h1>${candidateData.name}</h1>
+        <p class="hero-role">${candidateData.role}</p>
+        <p class="hero-copy">${candidateData.slogan}</p>
+        <div class="hero-point-list">
+          ${candidateData.heroPoints.map((item) => `<span>${item}</span>`).join("")}
+        </div>
+        <div class="hero-actions">
+          <a href="#policies">공약 보기</a>
+          <a href="#profile">후보 소개</a>
+        </div>
+      </div>
     </section>
   `;
 }
