@@ -86,7 +86,7 @@ const candidateData = {
     {
       title: "청년·경제·일자리",
       slogan: "다시 뛰는 진주 경제, 일자리에서 시작합니다",
-      image: "images/policy-economy.jpg?v=20260525-policy2",
+      image: "images/policy-economy-infographic.png?v=20260527-policy-ai1",
       points: [
         "청년 일자리 확대 및 정착 지원 확대",
         "청년 주거문화 지원 및 창업 지원 확대",
@@ -97,7 +97,7 @@ const candidateData = {
     {
       title: "돌봄 복지",
       slogan: "삶을 더 따뜻하게, 미래를 더 단단하게",
-      image: "images/policy-care.jpg?v=20260525-policy2",
+      image: "images/policy-care-infographic.png?v=20260527-policy-ai1",
       points: [
         "24시간 대응 가능한 긴급 돌봄 체계 구축",
         "기존 복지시설 활용한 거점형 돌봄 운영",
@@ -110,7 +110,7 @@ const candidateData = {
     {
       title: "교통·안전",
       slogan: "안전은 당연하고, 이동은 편리하게",
-      image: "images/policy-safety.jpg?v=20260525-policy2",
+      image: "images/policy-safety-infographic.png?v=20260527-policy-ai1",
       points: [
         "교통체계 개선, 버스 노선 효율화",
         "보행자 안전 강화",
@@ -121,7 +121,7 @@ const candidateData = {
     {
       title: "문화·관광",
       slogan: "진주의 가치를, 더 크게 빛나게",
-      image: "images/policy-culture.jpg?v=20260525-policy2",
+      image: "images/policy-culture-infographic.png?v=20260527-policy-ai1",
       points: [
         "유등축제 콘텐츠 활성화",
         "문화관광 인프라 확대",
@@ -132,7 +132,7 @@ const candidateData = {
     {
       title: "노인·장애인 복지",
       slogan: "약속을 넘어 일상이 되는 촘촘한 복지 안전망",
-      image: "images/policy-welfare.jpg?v=20260525-policy2",
+      image: "images/policy-welfare-infographic.png?v=20260527-policy-ai1",
       points: [
         "이동 지원 서비스 확대",
         "생활·의료 이동 연계 지원 강화",
@@ -143,7 +143,7 @@ const candidateData = {
     {
       title: "여성·가족·교육",
       slogan: "오늘의 안심, 내일의 안정",
-      image: "images/policy-education.jpg?v=20260525-policy2",
+      image: "images/policy-education-infographic.png?v=20260527-policy-ai1",
       points: [
         "경력 보유 여성 재취업 지원 및 직업 훈련 확대",
         "돌봄 서비스 연계 지원",
